@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+p{
+    display: flex;
+}
+#mmdbIcon {
+    width: 400px;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+#header {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    background-image: url(../img/fotorcreated.jpg);
+    background-size: contain;
+    height: 500px;
+}
+
+#content{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-color: darkorchid;
+}
+
+
+.posterContainer {
+        display: grid;
+        border-color: red;
+        align-items: baseline;
+        grid-template-columns: auto 1fr;
+        grid-gap: 20px;
+    }
+
+#moviePlot{
+    color: white;
+    float: left;
+    font-size: small;
+    font-family: revert;
+}
+
+.image{
+    max-width: 100%; /* Ensure the image doesn't exceed its container */
+    height: auto;
+}
