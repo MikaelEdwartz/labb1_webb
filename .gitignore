@@ -1,3 +1,4 @@
 # Project exclude paths
 /js/main.js
 /js/main.js.map
+.idea
