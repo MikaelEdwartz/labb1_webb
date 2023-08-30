@@ -101,4 +101,7 @@ const generateMovies = () => {
     return testArray;
 }
 
+const openSidebar = () =>{
+    console.log("hello")
+}
 document.addEventListener("DOMContentLoaded", generateOnStartUp);
