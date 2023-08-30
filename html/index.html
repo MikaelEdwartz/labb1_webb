@@ -8,12 +8,19 @@
 </head>
 <body>
 <header id="header">
-    <img id="mainIcon" src="../img/IMDB_Logo_2016.svg.png" alt="icon of MMDB">
+    <img id="mainIcon" src="../img/mainIcon.png" alt="icon of MMDB">
     <nav>
-        <button class="sidebarButton" onclick="openSidebar()">☰ Sidebar</button>
-        <a href="javascript:void(0)" class="closeButton" onclick="closeSideBar()">X</a>
+        <button id="sidebarButton" onclick="handleSidebar()">☰ </button>
+        <nav id="sidePanel">
+            <a href="javascript:void(0)" class="closeButton" onclick="closeSidebar()">x</a>
+            <a href="#">Show favourites</a>
+            <a href="#">Movie Roulette</a>
+            <a href="#">Log in</a>
+
+        </nav>
     </nav>
 </header>
+
 <main id="main">
     <section id="content">
 
@@ -22,8 +29,11 @@
 
 </main>
 
-<script src="../js/main.js" >
+<script src="../js/main.js">
+
+
 </script>
+
 </body>
 </html>
 

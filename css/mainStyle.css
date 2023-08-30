@@ -8,17 +8,19 @@
     width: 400px;
     overflow-clip-margin: content-box;
     overflow: clip;
+    justify-self: center;
+    align-self: start;
 }
 
 #header {
     display: grid;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
     background-image: url(../img/fotorcreated.jpg);
+    grid-template-columns: 2fr;
+    grid-template-rows: 1fr 3fr;
     background-size: contain;
-    height: 400px;
+    height: 450px;
+    justify-content: center;
+    justify-items: end;
 }
 
 /*
@@ -68,19 +70,78 @@
     grid-row: 1;
     justify-self: end;
     align-self: start;
-    margin-right: 15px;
+
+
+}
+#like{
     height: 75px;
     width: 75px;
+    margin-right: 15px;
+    margin-top: 15px;
+
+}
+nav{
+    display: grid;
+    align-self: start;
+    grid-column: 1;
+    grid-row: 1;
+}
+.sidebarButton{
+    width: 130px;
+    height: 150px;
+    font-size: 50px;
+    align-self: start;
 }
 .closeButton{
-    width: 10px;
+    width: 35px;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+}
+#sidePanel{
+    height: 250px;
+    width: 0px;
     position: fixed;
     z-index: 1;
-    height: 250px;
     top: 0;
-    left: 0;
-    background-color: red;
+    right: 0;
+    background: black;
     overflow-x: hidden;
-    transition: 0.5s;
     padding-top: 60px;
+    transition: 0.5s;
 }
+#sidePanel a{
+    padding: 8px 11px 0px 17px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    font-size: 22px;
+}
+
+#sidePanel .closeButton{
+    position: absolute;
+    right: 0px;
+    font-size: 34px;
+}
+#sidebarButton{
+    font-size: 50px;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    height: 100px;
+    width: 100px;
+}
+/*
+#HEADER
+    display: grid;
+    background-image: url(../img/fotorcreated.jpg);
+    grid-template-columns: 2fr;
+    grid-template-rows: 2fr;
+    background-size: contain;
+    height: 400px;
+    justify-content: center;
+    justify-items: end;
+ */
