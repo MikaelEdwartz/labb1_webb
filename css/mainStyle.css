@@ -14,7 +14,7 @@
 
 #header {
     display: grid;
-    background-image: url(../img/fotorcreated.jpg);
+    background-image: url(../img/bom2.jpg);
     grid-template-columns: 2fr;
     grid-template-rows: 1fr 3fr;
     background-size: contain;
