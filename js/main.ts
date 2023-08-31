@@ -1,3 +1,4 @@
+
 interface movies {
     title: string;
     "released": string;
@@ -29,18 +30,23 @@ const handleSidebar = () =>{
 const closeSidebar= () =>   {
     document.getElementById("sidePanel").style.width = "0px";
 }
-
+const setFavourite = () =>{
+    console.log("set favourite");
+}
+const setMoviePage = () => {
+    console.log("changed")
+}
 const generateMovieSections = (movie: movies, index: number) => {
-    content.innerHTML = content.innerHTML +
+    content.innerHTML +=
         "<a >" +
-            "<section class='movieContainer'>" +
-                "<figure class='poster'>" +
-                    "<img src=\"" + movie.posterUrl + "\" alt=\"movieposter\">" +
+            "<section class='movieContainer' >" +
+                "<figure onclick='setMoviePage()'> " +
+                    "<img class='poster' src=\"" + movie.posterUrl + "\" alt=\"movieposter\">" +
                 "</figure>" +
-                "<figure class='favoriteButton' onclick='' >" +
+                "<figure class='favoriteButton' onclick='setFavourite()' >" +
                     "<img id=\"like\" src=\"" + getLikeButtonState(movie, index) + "\" alt=\"movieposter\" >" +
                 "</figure>" +
-                "<article id='movieInfoContainer'>" +
+                "<article id='movieInfoContainer' onclick='setMoviePage()'>" +
                     "<p id='movieInfoP'> <bold>Writers: </bold>" + movie.writer + "</p>" +
                     "<p id='movieInfoP'> <bold>Actors:</bold> " + movie.actors + "</p>" +
                     "<p id='movieInfoP'> <bold>Genre: </bold>" + movie.genre + "</p>" +
