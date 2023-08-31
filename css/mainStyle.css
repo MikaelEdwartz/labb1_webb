@@ -4,8 +4,14 @@
     padding: 0;
     border: 0;
 }
-
-
+body{
+    background-color: deeppink;
+}
+@media screen and (min-width: 760px) {
+    img {
+        height: 60px;
+        width: 60px;
+    }
 
     #header {
         display: grid;
@@ -13,13 +19,166 @@
         grid-template-columns: 2fr;
         grid-template-rows: 1fr 3fr;
         background-size: contain;
-        height: 185px;
+        height: 310px;
         justify-content: center;
         justify-items: end;
     }
 
+    #mainIcon {
+        width: 250px;
+        height: auto;
+        overflow-clip-margin: content-box;
+        overflow: clip;
+        justify-self: center;
+        align-self: start;
+    }
+
+
+    .movieContainer {
+          display: grid;
+           grid-template-columns: 1fr 3fr;
+           align-items: end;
+           gap: 5px;
+           background-color: rgb(45 40 40);
+
+
+    }
+
+    #movieInfoP {
+        font-size: smaller;
+        font-family: sans-serif;
+        color: white;
+
+    }
+
+    #movieInfoContainer {
+        /*   display: grid;
+          grid-column: 2;
+          grid-row: 1;
+          justify-items: stretch;
+          align-content: center;
+          align-items: start;
+          gap: 1em;
+          max-width: 100%;
+          */
+        display: grid;
+        grid-column: 2;
+        grid-row: 1;
+        justify-items: end;
+        gap: 1em;
+        max-width: 100%;
+        align-content: center;
+        align-items: end;
+        justify-content: end;
+
+    }
+    figure{
+        display: grid;
+    }
+
+    .poster {
+        max-width: 100%; /* Ensure the image doesn't exceed its container */
+        height: auto;
+        width: 145px;
+    }
+
+    .favoriteButton {
+        grid-column: 2;
+        grid-gap: 20px;
+        grid-row: 1;
+        justify-self: end;
+        align-self: start;
+        height: 35px;
+        width: 35px;
+        margin-right: 15px;
+        margin-top: 15px;
+
+    }
+
+    #like {
+        height: 35px;
+        width: 35px;
+        margin-right: 15px;
+        margin-top: 15px;
+
+    }
+
+    nav {
+        display: grid;
+        align-self: start;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .closeButton {
+        width: 35px;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+    }
+
+    #sidePanel {
+        height: 125px;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        background: black;
+        overflow-x: hidden;
+        padding-top: 60px;
+        transition: 0.5s;
+    }
+
+    #sidePanel a {
+        padding: 8px 11px 0 17px;
+        text-decoration: none;
+        color: white;
+        display: block;
+        transition: 0.3s;
+        font-size: 22px;
+    }
+
+    #sidePanel .closeButton {
+        position: absolute;
+        right: 0px;
+        font-size: 34px;
+    }
+
+    #sidebarButton {
+        font-size: 25px;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        height: 50px;
+        width: 50px;
+    }
+}
+@media screen and (max-width: 420px){
+img {
+    height: 30px;
+    width: 30px;
+}
+
+#description{
+    display: none;
+}
+#header {
+    display: grid;
+    background-image: url(../img/bom2.jpg);
+    grid-template-columns: 2fr;
+    grid-template-rows: 1fr 3fr;
+    background-size: contain;
+    height: 185px;
+    justify-content: center;
+    justify-items: end;
+}
+
 #mainIcon {
     width: 150px;
+    height: auto;
     overflow-clip-margin: content-box;
     overflow: clip;
     justify-self: center;
@@ -27,17 +186,7 @@
 }
 
 
-/*
-#content{
-    display: grid;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-    background-color: rgba(0, 0, 0, 0.9);
-}*/
-
-.movieContainer{
+.movieContainer {
     display: grid;
     grid-template-columns: 1fr 3fr;
     align-items: end;
@@ -66,36 +215,45 @@
 .poster {
     max-width: 100%; /* Ensure the image doesn't exceed its container */
     height: auto;
+    width: 145px;
 }
+
 .favoriteButton {
     grid-column: 2;
     grid-gap: 20px;
     grid-row: 1;
     justify-self: end;
     align-self: start;
-
-
-}
-#like{
     height: 35px;
     width: 35px;
     margin-right: 15px;
     margin-top: 15px;
 
 }
-nav{
+
+#like {
+    height: 35px;
+    width: 35px;
+    margin-right: 15px;
+    margin-top: 15px;
+
+}
+
+nav {
     display: grid;
     align-self: start;
     grid-column: 1;
     grid-row: 1;
 }
-.closeButton{
+
+.closeButton {
     width: 35px;
     z-index: 1;
     top: 0;
     overflow-x: hidden;
 }
-#sidePanel{
+
+#sidePanel {
     height: 125px;
     width: 0;
     position: fixed;
@@ -107,7 +265,8 @@ nav{
     padding-top: 60px;
     transition: 0.5s;
 }
-#sidePanel a{
+
+#sidePanel a {
     padding: 8px 11px 0 17px;
     text-decoration: none;
     color: white;
@@ -116,29 +275,21 @@ nav{
     font-size: 22px;
 }
 
-#sidePanel .closeButton{
+#sidePanel .closeButton {
     position: absolute;
     right: 0px;
     font-size: 34px;
 }
-#sidebarButton{
+
+#sidebarButton {
     font-size: 25px;
     cursor: pointer;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 10px 15px;
     border: none;
     height: 50px;
     width: 50px;
 }
-/*
-#HEADER
-    display: grid;
-    background-image: url(../img/fotorcreated.jpg);
-    grid-template-columns: 2fr;
-    grid-template-rows: 2fr;
-    background-size: contain;
-    height: 400px;
-    justify-content: center;
-    justify-items: end;
- */
+
+}

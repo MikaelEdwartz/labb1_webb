@@ -1,4 +1,3 @@
-
 interface movies {
     title: string;
     "released": string;
@@ -10,53 +9,9 @@ interface movies {
     "rating": string;
     "favorite": boolean
 }
-const pathToLikedHeart: string = "../img/filledHeart.png";
-const pathToUnlikedHeart: string = "../img/hollowHeart.png";
-let pathToLikeButton: string = pathToUnlikedHeart;
-
-const content: Element = document.querySelector("#content");
-
-function showMovies() {
-    const movies = generateMovies()
-    movies.map((movie, index) => generateMovieSections(movie, index))
-}
-
-const generateOnStartUp = () => {
-    showMovies();
-}
-const handleSidebar = () =>{
-    document.getElementById("sidePanel").style.width = "250px";
-}
-const closeSidebar= () =>   {
-    document.getElementById("sidePanel").style.width = "0px";
-}
-const setFavourite = () =>{
-    console.log("set favourite");
-}
-const setMoviePage = () => {
-    console.log("changed")
-}
-const generateMovieSections = (movie: movies, index: number) => {
-    content.innerHTML +=
-        "<a >" +
-            "<section class='movieContainer' >" +
-                "<figure onclick='setMoviePage()'> " +
-                    "<img class='poster' src=\"" + movie.posterUrl + "\" alt=\"movieposter\">" +
-                "</figure>" +
-                "<figure class='favoriteButton' onclick='setFavourite()' >" +
-                    "<img id=\"like\" src=\"" + getLikeButtonState(movie, index) + "\" alt=\"movieposter\" >" +
-                "</figure>" +
-                "<article id='movieInfoContainer' onclick='setMoviePage()'>" +
-                    "<p id='movieInfoP'> <bold>Writers: </bold>" + movie.writer + "</p>" +
-                    "<p id='movieInfoP'> <bold>Actors:</bold> " + movie.actors + "</p>" +
-                    "<p id='movieInfoP'> <bold>Genre: </bold>" + movie.genre + "</p>" +
-                "</article>" +
-            "</section>" +
-        "</a>";
-}
 
 const generateMovies = () => {
-    let movie = {
+    let movie: movies = {
         "title": "The Shawshank Redemption",
         "released": "14 Oct 1994",
         "genre": "Drama",
@@ -67,7 +22,7 @@ const generateMovies = () => {
         "rating": "9.3",
         "favorite": false
     }
-    let movie2 = {
+    let movie2: movies = {
         "title": "Interstellar",
         "released": "07 Nov 2014",
         "genre": "Adventure, Drama, Sci-Fi",
@@ -79,9 +34,8 @@ const generateMovies = () => {
         "favorite": false
     }
 
-    let movie3 = {
+    let movie3: movies = {
         "title": "The Lord of the Rings: The Fellowship of the Ring",
-        "year": "2001",
         "released": "19 Dec 2001",
         "genre": "Action, Adventure, Drama",
         "writer": "J.R.R. Tolkien, Fran Walsh, Philippa Boyens",
@@ -92,7 +46,7 @@ const generateMovies = () => {
         "favorite": false
     }
 
-    let movie4 = {
+    let movie4: movies = {
         "title": "The Godfather",
         "released": "24 Mar 1972",
         "genre": "Crime, Drama",
@@ -103,13 +57,13 @@ const generateMovies = () => {
         "rating": "9.2",
         "favorite": false
     }
-    let movie5 ={
+    let movie5: movies = {
         "title": "Forrest Gump",
         "released": "06 Jul 1994",
         "genre": "Drama, Romance",
         "writer": "Winston Groom, Eric Roth",
         "actors": "Tom Hanks, Robin Wright, Gary Sinise",
-        "plot": "The history of the United States from the 1950s to the '70s unfolds from the perspective of an Alabama man with an IQ of 75, who yearns to be reunited with his childhood sweetheart.",
+        "plot": "The history of the United States from the 1950s to the 70s unfolds from the perspective of an Alabama man with an IQ of 75, who yearns to be reunited with his childhood sweetheart.",
         "posterUrl": "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
         "rating": "8.8",
         "favorite": false
@@ -118,29 +72,95 @@ const generateMovies = () => {
     let testArray = [];
 
     testArray.push(movie, movie2, movie3, movie4, movie5);
-    return testArray;
+    return [movie, movie2, movie3, movie4, movie5];
+}
+const pathToLikedHeart: string = "../img/filledHeart.png";
+const pathToUnlikedHeart: string = "../img/hollowHeart.png";
+
+let showingFavourites: boolean;
+const mainContent: Element = document.querySelector("#content");
+const movies = generateMovies()
+
+function showMovies() {
+    movies.map((movie) => console.log(movie))
+    movies.map((movie, index) => generateMovieSections(movie))
+
+}
+
+const generateOnStartUp = () => {
+    showMovies();
+}
+const handleSidebar = () => {
+    document.getElementById("sidePanel").style.width = "250px";
+}
+const closeSidebar = () => {
+    document.getElementById("sidePanel").style.width = "0px";
+}
+const setFavourite = (movie: movies) => {
+
+    let m: movies;
+    movies.forEach((mov) => {
+        if (mov.title === movie.title) {
+            mov.favorite = !mov.favorite
+            m = mov;
+        }
+    });
+
+    const doc = document.getElementById("favoriteButton_" + movie.title);
+    doc.setAttribute('src', m.favorite ? pathToLikedHeart : pathToUnlikedHeart);
+    console.log("MOVIER")
+    console.log(movie)
+    console.log(movies)
+
+}
+const setMoviePage = (movie: movies) => {
+    movies.map((m) => console.log(m))
+}
+
+const toggleFavourites = () => {
+    mainContent.innerHTML = "";
+    showingFavourites = !showingFavourites;
+    showingFavourites ? showFavourites() : hideFavourites();
+
+}
+const showFavourites = () => {
+    document.querySelector("#toggleFavourite").textContent = "Show All";
+    movies.filter((mov) => mov.favorite === true)
+        .map((movie) => generateMovieSections(movie));
+    closeSidebar()
+}
+const hideFavourites = () => {
+    document.querySelector("#toggleFavourite").textContent = "Show Favourites";
+    closeSidebar();
+    showMovies();
+}
+
+const generateMovieSections = (movie: movies) => {
+    mainContent.innerHTML +=
+        "<a >" +
+            "<section class='movieContainer' >" +
+                "<figure onclick='setMoviePage(" + JSON.stringify(movie) + ")'> " +
+                    "<img class='poster' src=\"" + movie.posterUrl + "\" alt=\"movieposter\">" +
+                "</figure>" +
+                "<figure class='favoriteButton' onclick='setFavourite(" + JSON.stringify(movie) + ")'>" +
+                    "<img id='favoriteButton_" + movie.title + "' src=\"" + getLikeButtonState(movie) + "\" alt=\"movieposter\" >" +
+                "</figure>" +
+                "<article id='movieInfoContainer' onclick='setMoviePage(" + JSON.stringify(movie) + ")'>" +
+                    "<p id='movieInfoP'> <bold>Writers: </bold>" + movie.writer + "</p>" +
+                    "<p id='movieInfoP'> <bold>Actors:</bold> " + movie.actors + "</p>" +
+                    "<p id='movieInfoP'> <bold>Genre: </bold>" + movie.genre + "</p>" +
+                    "<p id='description'>" + movie.plot + "</p>" +
+                "</article>" +
+            "</section>" +
+        "</a>";
 }
 
 
 document.addEventListener("DOMContentLoaded", generateOnStartUp);
 
-const toggleLikeButton = (movie: movies, index: number) => {
-    console.log("he");
-    console.log(movie[index].favorite);
-    movie[index].favorite = !movie[index].favorite;
-    console.log(movie[index].favorite);
-    /*  if(movie.favorite){
-          movie.favorite = false;
 
-         document.querySelector("#like").setAttribute("src", pathToUnlikedHeart)
-         console.log("hees")
-      } else {
-         movie.favorite = true;
-          document.querySelector("#like").setAttribute("src", pathToLikedHeart)
-      }*/
-}
-const getLikeButtonState = (movie: movies, index: number) => {
-
+const getLikeButtonState = (movie: movies) => {
+    console.log(movie.title + " is fav: " + movie.favorite)
     let heartState: string;
     movie.favorite ? heartState = pathToLikedHeart : heartState = pathToUnlikedHeart;
 
