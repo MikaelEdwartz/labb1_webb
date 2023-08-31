@@ -7,7 +7,7 @@ interface movies {
     "plot": string;
     "posterUrl": string;
     "rating": string;
-    "favorite": boolean
+    "favorite": boolean;
 }
 
 const generateMovies = () => {
@@ -40,7 +40,7 @@ const generateMovies = () => {
         "genre": "Action, Adventure, Drama",
         "writer": "J.R.R. Tolkien, Fran Walsh, Philippa Boyens",
         "actors": "Elijah Wood, Ian McKellen, Orlando Bloom",
-        "plot": "An ancient Ring thought lost for centuries has been found, and through a strange twist of fate has been given to a small Hobbit named Frodo. When Gandalf discovers the Ring is in fact the One Ring of the Dark Lord Sauron, Frodo must make an epic quest to the Cracks of Doom in order to destroy it. However, he does not go alone. He is joined by Gandalf, Legolas the elf, Gimli the Dwarf, Aragorn, Boromir, and his three Hobbit friends Merry, Pippin, and Samwise. Through mountains, snow, darkness, forests, rivers and plains, facing evil and danger at every corner the Fellowship of the Ring must go. Their quest to destroy the One Ring is the only hope for the end of the Dark Lords reign.",
+        "plot": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron",
         "posterUrl": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg",
         "rating": "8.8",
         "favorite": false
@@ -146,10 +146,11 @@ const generateMovieSections = (movie: movies) => {
                     "<img id='favoriteButton_" + movie.title + "' src=\"" + getLikeButtonState(movie) + "\" alt=\"movieposter\" >" +
                 "</figure>" +
                 "<article id='movieInfoContainer' onclick='setMoviePage(" + JSON.stringify(movie) + ")'>" +
+        "<p id='title'>" + movie.title + "</p>" +
+        "<p id='description'>" + movie.plot + "</p>" +
                     "<p id='movieInfoP'> <bold>Writers: </bold>" + movie.writer + "</p>" +
-                    "<p id='movieInfoP'> <bold>Actors:</bold> " + movie.actors + "</p>" +
+                    "<p id='movieInfoPActor'> <bold>Actors:</bold> " + movie.actors + "</p>" +
                     "<p id='movieInfoP'> <bold>Genre: </bold>" + movie.genre + "</p>" +
-                    "<p id='description'>" + movie.plot + "</p>" +
                 "</article>" +
             "</section>" +
         "</a>";
