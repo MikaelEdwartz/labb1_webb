@@ -9,7 +9,23 @@
 <body>
 <header id="header">
     <img id="mainIcon" src="../img/mainIcon.png" alt="icon of MMDB">
-    <nav>
+    <nav class="desktopHeader">
+        <button class="dropbtn"onclick="window.scrollTo(0,0)">Home</button>
+
+        <div class="dropdown">
+            <button class="dropbtn">Genres</button>
+            <div id="dropdown-content">
+                <a href="#">Drama </a>
+                <a href="#">Action</a>
+                <a href="#">Sci-fi</a>
+            </div>
+        </div>
+        <button class="dropbtn">Show Favourites</button>
+        <button class="dropbtn">Movie Roulette</button>
+        <button class="dropbtn">Log in</button>
+
+    </nav>
+    <nav class="mobileHeader">
         <button id="sidebarButton" onclick="handleSidebar()">☰ </button>
         <nav id="sidePanel">
             <a href="javascript:void(0)" class="closeButton" onclick="closeSidebar()">x</a>
@@ -20,6 +36,10 @@
         </nav>
     </nav>
 </header>
+
+<form class="loginModal">
+
+</form>
 
 <main id="main">
     <section id="content">

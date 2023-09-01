@@ -68,33 +68,70 @@ const generateMovies = () => {
         "rating": "8.8",
         "favorite": false
     }
+    let movie6 = {
+        "title": "The Silence of the Lambs",
+        "released": "14 Feb 1991",
+        "genre": "Crime, Drama, Thriller",
+        "writer": "Thomas Harris, Ted Tally",
+        "actors": "Jodie Foster, Anthony Hopkins, Lawrence A. Bonney",
+        "plot": "A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims.",
+        "posterUrl": "https://m.media-amazon.com/images/M/MV5BNjNhZTk0ZmEtNjJhMi00YzFlLWE1MmEtYzM1M2ZmMGMwMTU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
+        "rating": "8.6",
+        "favorite": false
+    }
 
-    let testArray = [];
-
-    testArray.push(movie, movie2, movie3, movie4, movie5);
-    return [movie, movie2, movie3, movie4, movie5];
+    return [movie, movie2, movie3, movie4, movie5, movie6];
 }
 const pathToLikedHeart: string = "../img/filledHeart.png";
 const pathToUnlikedHeart: string = "../img/hollowHeart.png";
+const generateGenres= () =>{
+    let genres: Set<string> = new Set<string>();
+    movies.map((movie) =>  movie.genre.split(", ").map((genre) => genres.add(genre)));
+    return genres;
+}
 
 let showingFavourites: boolean;
 const mainContent: Element = document.querySelector("#content");
 const movies = generateMovies()
-
+const genres = generateGenres()
 function showMovies() {
-    movies.map((movie) => console.log(movie))
     movies.map((movie, index) => generateMovieSections(movie))
-
 }
+
 
 const generateOnStartUp = () => {
     showMovies();
+   generateGenreDropDown();
+}
+const generateGenreDropDown = () => {
+    const dropDown: HTMLElement = document.getElementById("dropdown-content");
+    let listHtml: string ="<a href='#' onclick='showOnlyFromGenre(" + JSON.stringify("Show All") + ")'> Show All </a>";
+    genres.forEach((genre) =>{
+        listHtml += "<a href='#' onclick='showOnlyFromGenre(" + JSON.stringify(genre) +")'>" + genre + "</a>"
+    })
+    dropDown.innerHTML = listHtml
+
+
+}
+const showOnlyFromGenre = (genre: string) => {
+    mainContent.innerHTML = "";
+    genre === "Show All" ? showMovies() : movies.filter((movie) => movie.genre.match(genre)).forEach((movie) => generateMovieSections(movie))
+
 }
 const handleSidebar = () => {
+
     document.getElementById("sidePanel").style.width = "250px";
 }
 const closeSidebar = () => {
     document.getElementById("sidePanel").style.width = "0px";
+}
+const handleGenre = () => {
+    document.getElementById("genreDropdown").style.display= "block";
+    //document.getElementById("home").style.height= "34px";
+
+}
+const closeGenre = () => {
+    document.getElementById("genreDropdown").style.display = "none";
 }
 const setFavourite = (movie: movies) => {
 
@@ -103,14 +140,12 @@ const setFavourite = (movie: movies) => {
         if (mov.title === movie.title) {
             mov.favorite = !mov.favorite
             m = mov;
+
         }
     });
 
     const doc = document.getElementById("favoriteButton_" + movie.title);
     doc.setAttribute('src', m.favorite ? pathToLikedHeart : pathToUnlikedHeart);
-    console.log("MOVIER")
-    console.log(movie)
-    console.log(movies)
 
 }
 const setMoviePage = (movie: movies) => {
@@ -137,7 +172,7 @@ const hideFavourites = () => {
 
 const generateMovieSections = (movie: movies) => {
     mainContent.innerHTML +=
-        "<a >" +
+
             "<section class='movieContainer' >" +
                 "<figure onclick='setMoviePage(" + JSON.stringify(movie) + ")'> " +
                     "<img class='poster' src=\"" + movie.posterUrl + "\" alt=\"movieposter\">" +
@@ -152,8 +187,7 @@ const generateMovieSections = (movie: movies) => {
                     "<p id='movieInfoPActor'> <bold>Actors:</bold> " + movie.actors + "</p>" +
                     "<p id='movieInfoP'> <bold>Genre: </bold>" + movie.genre + "</p>" +
                 "</article>" +
-            "</section>" +
-        "</a>";
+            "</section>" ;
 }
 
 
@@ -161,9 +195,5 @@ document.addEventListener("DOMContentLoaded", generateOnStartUp);
 
 
 const getLikeButtonState = (movie: movies) => {
-    console.log(movie.title + " is fav: " + movie.favorite)
-    let heartState: string;
-    movie.favorite ? heartState = pathToLikedHeart : heartState = pathToUnlikedHeart;
-
-    return heartState;
+    return movie.favorite ? pathToLikedHeart : pathToUnlikedHeart;
 }
