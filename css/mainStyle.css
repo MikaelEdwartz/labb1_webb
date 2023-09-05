@@ -4,284 +4,304 @@
     padding: 0;
     border: 0;
     scroll-behavior: smooth;
+
+}
+body{
+    background-color: rgb(45 40 40);
+}
+section {
+    display: grid;
 }
 
-section{
+article {
     display: grid;
-}article{
-     display: grid;
- }
-p{
+}
+
+p {
     display: grid;
+}
+
+a {
+    color: white;
+}
+
+#header {
+    display: grid;
+    background-image: url(../img/bom2.jpg);
+    grid-template-columns: 2fr;
+    grid-template-rows: 1fr 3fr;
+    background-size: contain;
+    height: auto;
+    justify-content: center;
+    justify-items: end;
+}
+
+
+#mainIcon {
+    width: 250px;
+    height: auto;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    justify-self: center;
+    align-self: start;
+}
+
+.movieContainer {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: end;
+    gap: 5px;
+    background-color: rgb(45 40 40);
+}
+
+#movieInfoP {
+    font-size: smaller;
+    font-family: sans-serif;
+    color: white;
+}
+
+#movieInfoContainer {
+    display: grid;
+    grid-column: 2;
+    grid-row: 1;
+    justify-items: center;
+    align-self: stretch;
+    gap: 2em;
+    max-width: 100%;
+}
+
+#title {
+    color: white;
+    font-size: 28px;
+    font-style: italic;
+}
+
+.favoriteButton {
+    grid-column: 2;
+    grid-gap: 20px;
+    grid-row: 1;
+    justify-self: end;
+    align-self: start;
+    height: 35px;
+    width: 35px;
+    margin-top: 8px;
+    z-index: 1;
+}
+
+#like {
+    height: 35px;
+    width: 35px;
+    margin-right: 15px;
+    margin-top: 15px;
+
+}
+
+nav {
+    display: grid;
+    align-self: start;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.closeButton {
+    width: 35px;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+}
+
+#sidePanel {
+    height: 125px;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background: black;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+#sidePanel a {
+    padding: 8px 11px 0 17px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    font-size: 22px;
+}
+
+#sidePanel .closeButton {
+    position: absolute;
+    right: 0;
+    font-size: 34px;
+}
+
+#sidebarButton {
+    font-size: 25px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    height: 50px;
+    width: 50px;
+}
+
+#movieInfoPActor, #description {
+    font-size: 20px;
+    font-family: sans-serif;
+    color: white;
+}
+.desktopHeader {
+    display: none;
+}
+
+.movieNav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    height: 60px;
+    background-color: #4F4303;
+}
+
+.mainIcon_movie {
+    height: 45px;
+    width: auto;
+    padding-top: 5px;
+}
+
+.headerButton {
+    background-color: #210643;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.PP {
+    background-color: #4F4303;
+}
+
+.movie_movie {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    background-color: rgb(45 40 40);
+    color: white;
+}
+
+.movieInfo_movie {
+    display: grid;
+    justify-items: start;
+    align-content: space-evenly;
+    font-size: 13px;
+}
+
+.moviePoster_movie {
+    height: 275px;
+    width: 190px;
+}
+
+.moviePlot_movie {
+    display: grid;
+    grid-column: 1 / span 2;
+    grid-row: 2;
+    font-size: 20px;
+    font-family: sans-serif;
+    color: white;
+    justify-self: center;
+}
+
+#plot {
+
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+    background-color: #210643;
+}
+
+
+#genre-dropdown-content, #favourite-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 0 10px 4px rgba(0, 0, 0, 1.2);
+    z-index: auto;
+}
+
+#genre-dropdown-content a, #favourite-dropdown-content a {
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+    display: block;
+    font-size: 20px;
+    border-bottom: 1px solid;
+
+}
+
+
+#genre-dropdown-content a:hover, #favourite-dropdown-content a:hover {
+    background-color: blue;
+}
+
+
+.dropdown:hover #favourite-dropdown-content, .dropdown:hover #genre-dropdown-content {
+    display: block;
+}
+
+.headerButton:hover {
+    background-color: blue;
 }
 
 @media screen and (max-width: 500px) {
-
-    .desktopHeader {
-        display: none;
-    }
 
     img {
         height: 30px;
         width: 30px;
     }
 
-    #description {
-        display: none;
-    }
-
-    #title {
+    #title, #description {
         display: none;
 
     }
-
-    #header {
-        display: grid;
-        background-image: url(../img/bom2.jpg);
-        grid-template-columns: 2fr;
-        grid-template-rows: 1fr 3fr;
-        background-size: contain;
-        height: auto;
-        justify-content: center;
-        justify-items: end;
-    }
-
     #mainIcon {
         width: 150px;
-        height: auto;
-        overflow-clip-margin: content-box;
-        overflow: clip;
-        justify-self: center;
-        align-self: start;
     }
 
-
-    .movieContainer {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        align-items: end;
-        gap: 5px;
-        background-color: rgb(45 40 40);
-    }
-
-    #movieInfoP, #movieInfoPActor {
+    #movieInfoPActor {
         font-size: smaller;
-        font-family: sans-serif;
-        color: white;
-
     }
 
     #movieInfoContainer {
-        display: grid;
-        grid-column: 2;
-        grid-row: 1;
         justify-items: stretch;
         align-content: center;
-        align-items: start;
         gap: 10px;
         border-bottom: 2px antiquewhite;
-        max-width: 100%;
     }
 
     .poster {
-        max-width: 100%; /* Ensure the image doesn't exceed its container */
+        max-width: 100%;
         height: auto;
         width: 145px;
     }
-
-    .favoriteButton {
-        grid-column: 2;
-        grid-gap: 20px;
-        grid-row: 1;
-        justify-self: end;
-        align-self: start;
-        height: 35px;
-        width: 35px;
-        margin-top: 8px;
-        z-index: 1;
-
-    }
-
-    #like {
-        height: 35px;
-        width: 35px;
-        margin-right: 15px;
-        margin-top: 15px;
-
-    }
-
-    nav {
-        display: grid;
-        align-self: start;
-        grid-column: 1;
-        grid-row: 1;
-    }
-
-    .closeButton {
-        width: 35px;
-        z-index: 1;
-        top: 0;
-        overflow-x: hidden;
-    }
-
-    #sidePanel {
-        height: 125px;
-        width: 0;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        right: 0;
-        background: black;
-        overflow-x: hidden;
-        padding-top: 60px;
-        transition: 0.5s;
-    }
-
-    #sidePanel a {
-        padding: 8px 11px 0 17px;
-        text-decoration: none;
-        color: white;
-        display: block;
-        transition: 0.3s;
-        font-size: 22px;
-    }
-
-    #sidePanel .closeButton {
-        position: absolute;
-        right: 0px;
-        font-size: 34px;
-    }
-
-    #sidebarButton {
-        font-size: 25px;
-        cursor: pointer;
-        background-color: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        height: 50px;
-        width: 50px;
-    }
-    .movieNav{
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        justify-items: center;
-        align-items: center;
-        height: 60px;
-        background-color: #4F4303;
-    }
-
-   .mainIcon_movie{
-       height: 45px;
-       width: auto;
-       padding-top: 5px;
-   }
-
-   .dropbtn{
-       background-color: #210643;
-       color: white;
-       padding: 16px;
-       font-size: 16px;
-       border: none;
-       border-radius: 10px;
-       width: 100%;
-   }
-   .PP{
-       background-color: #4F4303;
-   }
-
-   .movie_movie{
-       display: grid;
-       grid-template-columns: 1fr 1fr;
-       grid-template-rows: 1fr 1fr;
-       background-color: rgb(45 40 40);
-
-       color: white;
-   }
-
-    .movieInfo_movie{
-        display: grid;
-        justify-items: start;
-        align-content: space-evenly;
-        font-size: 13px;
-    }
-   .moviePoster_movie{
-       height: 275px;
-       width: 190px;
-   }
-   .moviePlot_movie{
-       display: grid;
-       grid-column: 1 / span 2;
-       grid-row: 2;
-       font-size: 20px;
-       font-family: sans-serif;
-       color: white;
-       justify-self: center;
-   }
-
-   #plot{
-
-   }
-
 }
-/* ---------------------------------------------------------------------------------------------------*/
-@media screen and (min-width: 500px) { /*TABLET*/
-    .desktopHeader {
-        display: none;
-    }
 
+@media screen and (min-width: 500px){
     img {
         height: 70px;
         width: 70px;
     }
 
-    #header {
-        display: grid;
-        background-image: url(../img/bom2.jpg);
-        grid-template-columns: 2fr;
-        grid-template-rows: 1fr 3fr;
-        background-size: contain;
-        height: auto;
-        justify-content: center;
-        justify-items: end;
-    }
-
-    #mainIcon {
-        width: 250px;
-        height: auto;
-        overflow-clip-margin: content-box;
-        overflow: clip;
-        justify-self: center;
-        align-self: start;
-    }
-
-
-    .movieContainer {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        align-items: end;
-        gap: 5px;
-        background-color: rgb(45 40 40);
-
-
-    }
-
-    #movieInfoP {
-        font-size: smaller;
-        font-family: sans-serif;
-        color: white;
-
-    }
-
     #movieInfoContainer {
-        display: grid;
-        grid-column: 2;
-        grid-row: 1;
         justify-items: left;
-        gap: 2em;
-        max-width: 100%;
         place-self: normal;
-
     }
 
     figure {
@@ -298,108 +318,38 @@ p{
         display: none;
     }
 
-    #movieInfoPActor, #description {
-        font-size: 20px;
-        font-family: sans-serif;
-        color: white;
-    }
-
-    #title {
-        color: white;
-        font-size: 28px;
-        font-style: italic;
-    }
-
-    /* #description{
-         color: white;
-
-     }*/
     .favoriteButton {
         justify-items: center;
-        grid-column: 2;
-        grid-gap: 20px;
-        grid-row: 1;
-        justify-self: end;
-        align-self: start;
         height: 89px;
         width: 75px;
         margin-right: 17px;
         margin-top: 15px;
         align-items: center;
-        z-index: 1;
-    }
-
-    #like {
-        height: 35px;
-        width: 35px;
-        margin-right: 15px;
-        margin-top: 15px;
-
-    }
-
-    nav {
-        display: grid;
-        align-self: start;
-        grid-column: 1;
-        grid-row: 1;
-    }
-
-    .closeButton {
-        width: 35px;
-        z-index: 1;
-        top: 0;
-        overflow-x: hidden;
     }
 
     #sidePanel {
         height: 205px;
-        width: 0;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        right: 0;
-        background: black;
-        overflow-x: hidden;
-        padding-top: 60px;
-        transition: 0.5s;
     }
 
     #sidePanel a {
-        padding: 8px 11px 0 17px;
-        text-decoration: none;
-        color: white;
-        display: block;
-        transition: 0.3s;
         font-size: 25px;
     }
 
     #sidePanel .closeButton {
-        position: absolute;
-        right: 0px;
         font-size: 50px;
     }
 
     #sidebarButton {
         font-size: 65px;
-        cursor: pointer;
-        background-color: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 10px 15px;
-        border: none;
         height: 100px;
         width: 100px;
     }
 }
 
-@media screen and (min-width: 1200px) { /*DESKTOP*/
+@media screen and (min-width: 1200px) {
     #header {
-        display: grid;
         background-image: url(../img/moviePoster.jpg);
-        grid-template-columns: 2fr;
-        grid-template-rows: 1fr 3fr;
-        background-size: contain;
         height: 310px;
-        justify-content: center;
         justify-items: center;
     }
 
@@ -416,18 +366,12 @@ p{
         position: fixed;
         justify-content: start;
         justify-items: legacy;
-        gap: 0em;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 1);
+        gap: 0;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 1);
         background: rgba(0, 0, 0, 0.9);
     }
 
     #mainIcon {
-        width: 250px;
-        height: auto;
-        overflow-clip-margin: content-box;
-        overflow: clip;
-        justify-self: center;
-        align-self: start;
         grid-row: 2;
     }
 
@@ -441,85 +385,15 @@ p{
         color: white;
     }
 
-
-    #movieInfoContainer {
-        display: grid;
-        grid-column: 2;
-        grid-row: 1;
-        justify-items: center;
-        align-self: stretch;
-        gap: 2em;
-        max-width: 100%;
-    }
-
     #title {
-        color: white;
         place-self: center;
         font-size: 25px;
-        font-style: italic;
     }
 
-    a {
-        color: white;
-
-    }
-
-    .dropbtn {
-        background-color: #210643;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        width: 100%;
-    }
-
-    /* The container <div> - needed to position the dropdown content */
-    .dropdown {
-        position: relative;
-        display: inline-block;
-        background-color: #210643;
-    }
-
-    /* Dropdown Content (Hidden by Default) */
-    #genre-dropdown-content, #favourite-dropdown-content{
-        display: none;
-        position: absolute;
-        background-color: white;
-        min-width: 160px;
-        box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 1.2);
-        z-index: auto;
-    }
-
-    /* Links inside the dropdown */
-    #genre-dropdown-content a, #favourite-dropdown-content a {
-        color: black;
-        padding: 5px;
-        text-decoration: none;
-        display: block;
-        font-size: 20px;
-        border-bottom: 1px solid;
-
-    }
-
-    /* Change color of dropdown links on hover */
-    #genre-dropdown-content a:hover, #favourite-dropdown-content a:hover {
-        background-color: blue;
-    }
-
-    /* Show the dropdown menu on hover */
-    .dropdown:hover #favourite-dropdown-content, .dropdown:hover #genre-dropdown-content {
-        display: block;
-    }
-
-    /* Change the background color of the dropdown button when the dropdown content is shown */
-    .dropbtn:hover {
-        background-color: blue;
-    }
     #movieInfoPActor, #description {
         align-self: center;
         font-size: 18px;
-        font-family: sans-serif;
-        color: white;
+
     }
 }
 
