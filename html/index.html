@@ -14,14 +14,18 @@
 
         <div class="dropdown">
             <button class="dropbtn">Genres</button>
-            <div id="dropdown-content">
-                <a href="#">Drama </a>
-                <a href="#">Action</a>
-                <a href="#">Sci-fi</a>
+            <div id="genre-dropdown-content">
+
             </div>
         </div>
-        <button class="dropbtn">Show Favourites</button>
-        <button class="dropbtn">Movie Roulette</button>
+        <div class="dropdown">
+            <button class="dropbtn">Show Favourites</button>
+        <div id="favourite-dropdown-content">
+        </div>
+         </div>
+
+
+        <button class="dropbtn" onclick="movieRoulette()">Movie Roulette</button>
         <button class="dropbtn">Log in</button>
 
     </nav>
@@ -30,7 +34,7 @@
         <nav id="sidePanel">
             <a href="javascript:void(0)" class="closeButton" onclick="closeSidebar()">x</a>
             <a href="#"  id="toggleFavourite" onclick="toggleFavourites()">Show favourites</a>
-            <a href="#">Movie Roulette</a>
+            <a href="#" onclick="movieRoulette()">Movie Roulette</a>
             <a href="#">Log in</a>
 
         </nav>
@@ -48,7 +52,7 @@
     <section id="demo"></section>
 
 </main>
-
+<script src="../js/shared.js"></script>
 <script src="../js/main.js">
 
 
