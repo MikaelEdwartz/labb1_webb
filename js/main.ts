@@ -91,6 +91,7 @@ const generateGenres= () =>{
 }
 
 let showingFavourites: boolean;
+const favourites: string[] = [];
 const mainContent: Element = document.querySelector("#content");
 const movies = generateMovies()
 const genres = generateGenres()
@@ -140,7 +141,8 @@ const setFavourite = (movie: movies) => {
         if (mov.title === movie.title) {
             mov.favorite = !mov.favorite
             m = mov;
-
+            //SET FAVOURITE TO LOCALSTORAGE
+            //CHECK IF CHANGE TO LIST
         }
     });
 
@@ -149,7 +151,12 @@ const setFavourite = (movie: movies) => {
 
 }
 const setMoviePage = (movie: movies) => {
-    movies.map((m) => console.log(m))
+
+    localStorage.setItem("movie", JSON.stringify(movie))
+    const newWindow = window.open("../html/Movie.html" , "_self")
+
+
+
 }
 
 const toggleFavourites = () => {
@@ -174,7 +181,7 @@ const generateMovieSections = (movie: movies) => {
     mainContent.innerHTML +=
 
             "<section class='movieContainer' >" +
-                "<figure onclick='setMoviePage(" + JSON.stringify(movie) + ")'> " +
+                "<figure onclick='setMoviePage(" + JSON.stringify(movie) + ")'> " + "</a>" +
                     "<img class='poster' src=\"" + movie.posterUrl + "\" alt=\"movieposter\">" +
                 "</figure>" +
                 "<figure class='favoriteButton' onclick='setFavourite(" + JSON.stringify(movie) + ")'>" +
