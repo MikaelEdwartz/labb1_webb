@@ -4,11 +4,12 @@
     padding: 0;
     border: 0;
     scroll-behavior: smooth;
-
 }
-body{
+
+body {
     background-color: rgb(45 40 40);
 }
+
 section {
     display: grid;
 }
@@ -19,6 +20,7 @@ article {
 
 p {
     display: grid;
+    text-align: center;
 }
 
 a {
@@ -27,23 +29,23 @@ a {
 
 #header {
     display: grid;
-    background-image: url(../img/bom2.jpg);
-    grid-template-columns: 2fr;
-    grid-template-rows: 1fr 3fr;
-    background-size: contain;
-    height: auto;
     justify-content: center;
     justify-items: end;
+    grid-template-columns: 2fr;
+    grid-template-rows: 1fr 3fr;
+    background-image: url(../res/img/bom2.jpg);
+    background-size: contain;
+    height: auto;
 }
 
 
 #mainIcon {
     width: 250px;
     height: auto;
-    overflow-clip-margin: content-box;
-    overflow: clip;
     justify-self: center;
     align-self: start;
+    overflow-clip-margin: content-box;
+    overflow: clip;
 }
 
 .movieContainer {
@@ -93,7 +95,6 @@ a {
     width: 35px;
     margin-right: 15px;
     margin-top: 15px;
-
 }
 
 nav {
@@ -111,10 +112,10 @@ nav {
 }
 
 #sidePanel {
-    height: 125px;
-    width: 0;
     position: fixed;
     z-index: 1;
+    height: 125px;
+    width: 0;
     top: 0;
     right: 0;
     background: black;
@@ -124,10 +125,10 @@ nav {
 }
 
 #sidePanel a {
+    display: block;
     padding: 8px 11px 0 17px;
     text-decoration: none;
     color: white;
-    display: block;
     transition: 0.3s;
     font-size: 22px;
 }
@@ -141,19 +142,20 @@ nav {
 #sidebarButton {
     font-size: 25px;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
     padding: 10px 15px;
     border: none;
     height: 50px;
     width: 50px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
 }
 
 #movieInfoPActor, #description {
-    font-size: 20px;
+    font-size: 15px;
     font-family: sans-serif;
     color: white;
 }
+
 .desktopHeader {
     display: none;
 }
@@ -174,30 +176,32 @@ nav {
 }
 
 .headerButton {
-    background-color: #210643;
-    color: white;
     padding: 16px;
     font-size: 16px;
     border: none;
     border-radius: 10px;
     width: 100%;
+    background-color: #210643;
+    color: white;
 }
 
-.PP {
-    background-color: #4F4303;
+.trailerSection {
+    display: grid;
+    justify-content: center;
+    background-color: rgb(45 40 40);
 }
 
 .movie_movie {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    margin-top: 10px;
     background-color: rgb(45 40 40);
     color: white;
 }
 
 .movieInfo_movie {
     display: grid;
-    justify-items: start;
     align-content: space-evenly;
     font-size: 13px;
 }
@@ -211,21 +215,23 @@ nav {
     display: grid;
     grid-column: 1 / span 2;
     grid-row: 2;
-    font-size: 20px;
-    font-family: sans-serif;
-    color: white;
     justify-self: center;
+    justify-items: center;
+    font-family: sans-serif;
+    font-size: 20px;
+    color: white;
 }
 
 #plot {
-
+    margin-top: 15px;
 }
+
 .dropdown {
     position: relative;
     display: inline-block;
     background-color: #210643;
+    border-radius: 5px;
 }
-
 
 #genre-dropdown-content, #favourite-dropdown-content {
     display: none;
@@ -233,7 +239,7 @@ nav {
     background-color: white;
     min-width: 160px;
     box-shadow: 0 0 10px 4px rgba(0, 0, 0, 1.2);
-    z-index: auto;
+    z-index: 1;
 }
 
 #genre-dropdown-content a, #favourite-dropdown-content a {
@@ -246,22 +252,36 @@ nav {
 
 }
 
-
 #genre-dropdown-content a:hover, #favourite-dropdown-content a:hover {
     background-color: blue;
 }
 
-
 .dropdown:hover #favourite-dropdown-content, .dropdown:hover #genre-dropdown-content {
     display: block;
+    z-index: 1;
 }
 
 .headerButton:hover {
     background-color: blue;
 }
 
-@media screen and (max-width: 500px) {
+#favButton {
+    height: 50px;
+    width: auto;
+    align-self: center;
+    background-color: #210643;
+    color: white;
+    border: 2px solid rgb(45 40 40);
+    border-radius: 5px;
+    padding: 15px
+}
 
+.trailerSection {
+    display: grid;
+    justify-items: center;
+}
+
+@media screen and (max-width: 500px) {
     img {
         height: 30px;
         width: 30px;
@@ -271,6 +291,7 @@ nav {
         display: none;
 
     }
+
     #mainIcon {
         width: 150px;
     }
@@ -293,19 +314,15 @@ nav {
     }
 }
 
-@media screen and (min-width: 500px){
+@media screen and (min-width: 500px) {
     img {
         height: 70px;
         width: 70px;
     }
 
-    #movieInfoContainer {
-        justify-items: left;
-        place-self: normal;
-    }
-
     figure {
         display: grid;
+        justify-content: center;
     }
 
     .poster {
@@ -344,11 +361,26 @@ nav {
         height: 100px;
         width: 100px;
     }
+
+    .movieInfo_movie {
+        font-size: 20px;
+        justify-items: center;
+    }
+
+    #trailer {
+        height: 300px;
+        width: 500px;
+    }
+
+    .moviePoster_movie {
+        justify-self: end;
+    }
 }
 
 @media screen and (min-width: 1200px) {
     #header {
-        background-image: url(../img/moviePoster.jpg);
+        background-image: url(../res/img/moviePoster.jpg);
+        background-size: cover;
         height: 310px;
         justify-items: center;
     }
@@ -360,13 +392,13 @@ nav {
     .desktopHeader {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        overflow: visible;
-        font-size: 30px;
-        background: black;
-        position: fixed;
         justify-content: start;
         justify-items: legacy;
+        overflow: visible;
+        font-size: 30px;
+        position: fixed;
         gap: 0;
+        background: black;
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 1);
         background: rgba(0, 0, 0, 0.9);
     }
@@ -393,7 +425,26 @@ nav {
     #movieInfoPActor, #description {
         align-self: center;
         font-size: 18px;
+    }
 
+    #trailer {
+        height: auto;
+        width: 720px;
+    }
+
+    .movie_movie {
+        height: auto;
+        justify-items: start;
+    }
+
+    .moviePoster_movie {
+        height: 350px;
+        width: auto;
+        justify-self: end;
+    }
+
+    #favButton:hover {
+        background-color: blue;
     }
 }
 

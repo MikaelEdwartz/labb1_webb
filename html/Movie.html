@@ -11,35 +11,29 @@
     <nav class="movieNav">
         <div class="dropdown">
             <button class="headerButton" onclick="generatefavouriteDropDown()">Favourites</button>
-            <div id="genre-dropdown-content">
-
+            <div id="favourite-dropdown-content">
             </div>
         </div>
             <a href="index.html">
             <figure>
-                <img class="mainIcon_movie" src="../img/mainIcon.png" alt="MMDB icon">
+                <img class="mainIcon_movie" src="../res/img/mainIcon.png" alt="MMDB icon">
             </figure>
             </a>
         <div class="dropdown">
             <button class="headerButton">Log in</button>
-
         </div>
-
     </nav>
 </header>
-<section class="PP">
-    <video width="400" height="240" controls>
-     <source src="../vid/lotr.mp4" type="video/mp4">
+<section class="trailerSection">
+    <video id="trailer" width="390" height="240" controls>
+     <source src="../res/vid/lotr.mp4" type="video/mp4">
     </video>
+    <button id="favButton" onclick='setFavourite(getCurrentMovie())'> </button>
 </section>
-
 <section>
     <article class="movieInfo">
-
     </article>
-
 </section>
-
 <script src="../js/shared.js"></script>
 <script src="../js/movie.js"></script>
 </body>

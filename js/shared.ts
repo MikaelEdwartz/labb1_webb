@@ -88,6 +88,14 @@ const setFavourite = (movieTitle: string) => {
     const doc = document.getElementById("favoriteButton_" + movieTitle);
     if(doc)
         doc.setAttribute('src', isFavourite(movieTitle) ? pathToLikedHeart : pathToUnlikedHeart);
+    setFavouriteButtonText(movieTitle);
+
+}
+const setFavouriteButtonText= (movieTitle: string) => {
+    const doc = document.querySelector("#favButton");
+    if(doc)
+        doc.textContent = isFavourite(movieTitle) ? "Remove from favourites" : "Add to favourites"
+
 }
 const setMoviePage = (movie: movies) => {
 
@@ -98,6 +106,15 @@ const setMoviePages = (movie: string) => {
 
     movies.filter((mov) => movie === mov.title).map((favouriteMovie) => setMoviePage(favouriteMovie))
 
+}
+const isFavourite = (movie: string) => {
+
+    if (!localStorage.getItem("favourites")) {
+        return false
+    } else {
+        const favourites: string[] = JSON.parse(localStorage.getItem("favourites")!)
+        return favourites.indexOf(movie) !== -1
+    }
 }
 const generatefavouriteDropDown = () => {
     const favourite = localStorage.getItem("favourites");
@@ -111,4 +128,10 @@ const generatefavouriteDropDown = () => {
             })
             elDropDown.innerHTML = listHtml
         }}
+}
+const getCurrentMovie = () =>{
+
+    const currentMovie = localStorage.getItem("movie");
+    if(currentMovie)
+        return JSON.parse(currentMovie).title;
 }

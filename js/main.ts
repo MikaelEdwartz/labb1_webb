@@ -11,8 +11,8 @@ interface movies {
 }
 
 
-const pathToLikedHeart: string = "../img/filledHeart.png";
-const pathToUnlikedHeart: string = "../img/hollowHeart.png";
+const pathToLikedHeart: string = "../res/img/filledHeart.png";
+const pathToUnlikedHeart: string = "../res/img/hollowHeart.png";
 const generateGenres= () =>{
     let genres: Set<string> = new Set<string>();
     movies.map((movie) =>  movie.genre.split(", ").map((genre) => genres.add(genre)));
@@ -61,15 +61,7 @@ const closeSidebar = () => {
         elSidePanel.style.width = "0px";
 }
 
-const isFavourite = (movie: string) => {
 
-    if (!localStorage.getItem("favourites")) {
-        return false
-    } else {
-        const favourites: string[] = JSON.parse(localStorage.getItem("favourites")!)
-        return favourites.indexOf(movie) !== -1
-    }
-}
 
 const toggleFavourites = () => {
     if(mainContent) {
