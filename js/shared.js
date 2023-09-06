@@ -84,12 +84,16 @@ const setFavourite = (movieTitle) => {
     const doc = document.getElementById("favoriteButton_" + movieTitle);
     if (doc)
         doc.setAttribute('src', isFavourite(movieTitle) ? pathToLikedHeart : pathToUnlikedHeart);
-    setFavouriteButtonText(movieTitle);
+    updateFavourites(movieTitle);
 };
 const setFavouriteButtonText = (movieTitle) => {
     const doc = document.querySelector("#favButton");
     if (doc)
         doc.textContent = isFavourite(movieTitle) ? "Remove from favourites" : "Add to favourites";
+};
+const updateFavourites = (movieTitle) => {
+    setFavouriteButtonText(movieTitle);
+    generatefavouriteDropDown();
 };
 const setMoviePage = (movie) => {
     localStorage.setItem("movie", JSON.stringify(movie));

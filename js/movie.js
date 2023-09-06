@@ -4,7 +4,7 @@ const generateMoviePage = () => {
     const localMovie = localStorage.getItem("movie");
     if (localMovie) {
         const selectedMovie = JSON.parse(localMovie);
-        setFavouriteButtonText(selectedMovie.title);
+        updateFavourites(selectedMovie.title);
         if (content)
             content.innerHTML =
                 `<section class='movie_movie'>
@@ -40,7 +40,7 @@ const generateMoviePage = () => {
                     </article>
                 </section>
                 <section class='moviePlot_movie'>
-                    <article>
+                    <article id="plotArticle">
                         <p id='plot'>${selectedMovie.plot}</p>
                     </article>
                 </section>

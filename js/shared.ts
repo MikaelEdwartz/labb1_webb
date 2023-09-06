@@ -88,14 +88,18 @@ const setFavourite = (movieTitle: string) => {
     const doc = document.getElementById("favoriteButton_" + movieTitle);
     if(doc)
         doc.setAttribute('src', isFavourite(movieTitle) ? pathToLikedHeart : pathToUnlikedHeart);
-    setFavouriteButtonText(movieTitle);
 
+    updateFavourites(movieTitle)
 }
-const setFavouriteButtonText= (movieTitle: string) => {
+const setFavouriteButtonText = (movieTitle: string) => {
     const doc = document.querySelector("#favButton");
     if(doc)
         doc.textContent = isFavourite(movieTitle) ? "Remove from favourites" : "Add to favourites"
 
+}
+const updateFavourites = (movieTitle: string) => {
+    setFavouriteButtonText(movieTitle);
+    generatefavouriteDropDown()
 }
 const setMoviePage = (movie: movies) => {
 

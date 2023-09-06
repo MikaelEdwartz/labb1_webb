@@ -446,5 +446,8 @@ nav {
     #favButton:hover {
         background-color: blue;
     }
+    #plotArticle{
+        max-width:50%
+    }
 }
 
