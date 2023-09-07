@@ -1,42 +1,43 @@
-interface movies {
-    "title": string;
-    "released": string;
-    "genre": string;
-    "writer": string;
-    "actors": string;
-    "plot": string;
-    "posterUrl": string;
-    "rating": string;
-    "favorite": boolean;
-}
-
-
-const pathToLikedHeart: string = "../res/img/filledHeart.png";
-const pathToUnlikedHeart: string = "../res/img/hollowHeart.png";
-const generateGenres= () =>{
-    let genres: Set<string> = new Set<string>();
-    movies.map((movie) =>  movie.genre.split(", ").map((genre) => genres.add(genre)));
-    return genres;
+const generateGenres = () => {
+    movies.map((movie) => movie.Genre.split(", ").map((genre) => genres.add(genre)));
 }
 
 let showingFavourites: boolean;
 
 const mainContent = document.querySelector("#content");
 
-const genres = generateGenres()
-function showMovies() {
-    movies.map((movie, index) => generateMovieSections(movie))
-}
+const genres: Set<string> = new Set<string>();
 
+function showMovies() {
+    movies.map((movie) => generateMovieSections(movie))
+}
 
 const generateOnStartUp = () => {
     showMovies();
-   generateGenreDropDown();
-   generatefavouriteDropDown()
+    generateGenres();
+    generateGenreDropDown();
+    generatefavouriteDropDown()
+    const elLoginForm = document.querySelector("#loginForm") as HTMLFormElement;
+    if(elLoginForm)
+        elLoginForm.addEventListener('submit', (event) =>{
+            if(!elLoginForm.checkValidity())
+                return;
+
+            event.preventDefault();
+            const userName = document.getElementById("userName") as HTMLInputElement;
+            const loginButton = document.querySelector(".loginButton") as HTMLButtonElement;
+            if(userName && loginButton)
+                loginButton.textContent = "Logged in: " + userName.value;
+            localStorage.setItem("loggedIn", userName.value);
+            closeLoginForm()
+
+        });
+    isLoggedIn();
 }
+
 const generateGenreDropDown = () => {
     const elDropDown = document.getElementById("genre-dropdown-content");
-    if(elDropDown) {
+    if (elDropDown) {
         let listHtml: string = "<a href='#' onclick='showOnlyFromGenre(" + JSON.stringify("Show All") + ")'> Show All </a>";
         genres.forEach((genre) => {
             listHtml += "<a href='#' onclick='showOnlyFromGenre(" + JSON.stringify(genre) + ")'>" + genre + "</a>"
@@ -46,25 +47,24 @@ const generateGenreDropDown = () => {
 
 }
 const showOnlyFromGenre = (genre: string) => {
-    if(mainContent) {
+    if (mainContent) {
         mainContent.innerHTML = "";
-        genre === "Show All" ? showMovies() : movies.filter((movie) => movie.genre.match(genre)).forEach((movie) => generateMovieSections(movie))
+        genre === "Show All" ? showMovies() : movies.filter((movie) => movie.Genre.match(genre)).forEach((movie) => generateMovieSections(movie))
     }
 }
 const handleSidebar = () => {
     const elSidePanel = document.querySelector("#sidePanel") as HTMLDivElement;
-        elSidePanel.style.width = "250px";
+    elSidePanel.style.width = "250px";
 }
 
 const closeSidebar = () => {
     const elSidePanel = document.querySelector("#sidePanel") as HTMLDivElement;
-        elSidePanel.style.width = "0px";
+    elSidePanel.style.width = "0px";
 }
 
 
-
 const toggleFavourites = () => {
-    if(mainContent) {
+    if (mainContent) {
         mainContent.innerHTML = "";
         showingFavourites = !showingFavourites;
         showingFavourites ? showFavourites() : hideFavourites();
@@ -72,48 +72,51 @@ const toggleFavourites = () => {
 }
 const showFavourites = () => {
     const elToggleFavourite = document.querySelector("#toggleFavourite");
-    if(elToggleFavourite){
+    if (elToggleFavourite) {
         elToggleFavourite.textContent = "Show All"
-    movies.filter((mov) => isFavourite(mov.title))
-        .map((movie) => generateMovieSections(movie));
-    closeSidebar()}
+        movies.filter((mov) => isFavourite(mov.Title))
+            .map((movie) => generateMovieSections(movie));
+        closeSidebar()
+    }
 }
 const hideFavourites = () => {
     const elToggleFavourite = document.querySelector("#toggleFavourite");
-    if(elToggleFavourite){
+    if (elToggleFavourite) {
         elToggleFavourite.textContent = "Show Favourites"
-    closeSidebar();
-    showMovies();}
+        closeSidebar();
+        showMovies();
+    }
 }
 
-const generateMovieSections = (movie: movies) => {
-    if(mainContent)
+const generateMovieSections = (movie: movie) => {
+    console.log(movie.Title)
+    if (mainContent)
         mainContent.innerHTML +=
-                `<section class='movieContainer' > 
+            `<section class='movieContainer' > 
                     <figure onclick='setMoviePage(${JSON.stringify(movie)})'></a>
-                        <img class='poster' src=${movie.posterUrl} alt="movieposter">
+                        <img class='poster' src=${movie.Poster} alt="movieposter">
                     </figure>
-                    <figure class='favoriteButton' onclick='setFavourite(\"${movie.title}\")'>
-                        <img id='favoriteButton_${movie.title}' src=${getLikeButtonState(movie.title)} alt=´movieposter´ >
+                    <figure class='favoriteButton' onclick='setFavourite(\"${movie.Title}\")'>
+                        <img id='favoriteButton_${movie.Title}' src=${getLikeButtonState(movie.Title)} alt=´movieposter´ >
                     </figure>
                     <article id='movieInfoContainer' onclick='setMoviePage(${JSON.stringify(movie)})'>
-                        <p id='title'>${movie.title} </p>
-                        <p id='description'>${movie.plot}</p>
-                        <p id='movieInfoP'> <bold>Writers: </bold> ${movie.writer }</p>
-                        <p id='movieInfoPActor'> <bold>Actors:</bold> ${movie.actors} </p>
-                        <p id='movieInfoP'> <bold>Genre: </bold>${movie.genre}</p>
+                        <p id='title'>${movie.Title} </p>
+                        <p id='description'>${movie.Plot}</p>
+                        <p id='movieInfoP'> <bold>Writers: </bold> ${movie.Writer}</p>
+                        <p id='movieInfoPActor'> <bold>Actors:</bold> ${movie.Actors} </p>
+                        <p id='movieInfoP'> <bold>Genre: </bold>${movie.Genre}</p>
                     </article>
                 </section>`;
 }
 
-const movieRoulette = () =>{
+const movieRoulette = () => {
     const randomMovieIndex = Math.floor(Math.random() * movies.length)
     setMoviePage(movies[randomMovieIndex])
 }
 
-document.addEventListener("DOMContentLoaded", generateOnStartUp);
-
+document.addEventListener("DOMContentLoaded", generateMovies);
 
 const getLikeButtonState = (movie: string) => {
     return isFavourite(movie) ? pathToLikedHeart : pathToUnlikedHeart;
 }
+

@@ -1,77 +1,23 @@
 "use strict";
+const pathToLikedHeart = "../res/img/filledHeart.png";
+const pathToUnlikedHeart = "../res/img/hollowHeart.png";
 const generateMovies = () => {
-    let movie = {
-        "title": "The Shawshank Redemption",
-        "released": "14 Oct 1994",
-        "genre": "Drama",
-        "writer": "Stephen King, Frank Darabont",
-        "actors": "Tim Robbins, Morgan Freeman, Bob Gunton",
-        "plot": "Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, redemption through basic compassion.",
-        "posterUrl": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg",
-        "rating": "9.3",
-        "favorite": false
-    };
-    let movie2 = {
-        "title": "Interstellar",
-        "released": "07 Nov 2014",
-        "genre": "Adventure, Drama, Sci-Fi",
-        "writer": "Jonathan Nolan, Christopher Nolan",
-        "actors": "Matthew McConaughey, Anne Hathaway, Jessica Chastain",
-        "plot": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
-        "posterUrl": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-        "rating": "8.7",
-        "favorite": false
-    };
-    let movie3 = {
-        "title": "The Lord of the Rings: The Fellowship of the Ring",
-        "released": "19 Dec 2001",
-        "genre": "Action, Adventure, Drama",
-        "writer": "J.R.R. Tolkien, Fran Walsh, Philippa Boyens",
-        "actors": "Elijah Wood, Ian McKellen, Orlando Bloom",
-        "plot": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron",
-        "posterUrl": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg",
-        "rating": "8.8",
-        "favorite": false
-    };
-    let movie4 = {
-        "title": "The Godfather",
-        "released": "24 Mar 1972",
-        "genre": "Crime, Drama",
-        "writer": "Mario Puzo, Francis Ford Coppola",
-        "actors": "Marlon Brando, Al Pacino, James Caan",
-        "plot": "Don Vito Corleone, head of a mafia family, decides to hand over his empire to his youngest son Michael. However, his decision unintentionally puts the lives of his loved ones in grave danger.",
-        "posterUrl": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
-        "rating": "9.2",
-        "favorite": false
-    };
-    let movie5 = {
-        "title": "Forrest Gump",
-        "released": "06 Jul 1994",
-        "genre": "Drama, Romance",
-        "writer": "Winston Groom, Eric Roth",
-        "actors": "Tom Hanks, Robin Wright, Gary Sinise",
-        "plot": "The history of the United States from the 1950s to the 70s unfolds from the perspective of an Alabama man with an IQ of 75, who yearns to be reunited with his childhood sweetheart.",
-        "posterUrl": "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-        "rating": "8.8",
-        "favorite": false
-    };
-    let movie6 = {
-        "title": "The Silence of the Lambs",
-        "released": "14 Feb 1991",
-        "genre": "Crime, Drama, Thriller",
-        "writer": "Thomas Harris, Ted Tally",
-        "actors": "Jodie Foster, Anthony Hopkins, Lawrence A. Bonney",
-        "plot": "A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims.",
-        "posterUrl": "https://m.media-amazon.com/images/M/MV5BNjNhZTk0ZmEtNjJhMi00YzFlLWE1MmEtYzM1M2ZmMGMwMTU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
-        "rating": "8.6",
-        "favorite": false
-    };
-    return [movie, movie2, movie3, movie4, movie5, movie6];
+    const moviesToFetch = ["tt0120737", "tt0111161", "tt0068646", "tt0468569", "tt0050083", "tt0110912", "tt0109830", "tt0102926", "tt0816692", "tt0120689", "tt0088763", "tt0245429", "tt0253474", "tt0110357"];
+    Promise.all(moviesToFetch.map((movieID) => fetch(`https://www.omdbapi.com/?i=${movieID} &apikey=f485cb5`)
+        .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+    }).then(mov => {
+        if (mov)
+            movies.push(mov);
+    }))).then(() => generateOnStartUp());
 };
-const movies = generateMovies();
+const movies = [];
 const setFavourite = (movieTitle) => {
     const isNull = !localStorage.getItem("favourites");
     let favourites = [];
+    console.log(movieTitle);
     if (isNull) {
         favourites = [];
         favourites.push(movieTitle);
@@ -100,7 +46,7 @@ const setMoviePage = (movie) => {
     const newWindow = window.open("../html/Movie.html", "_self");
 };
 const setMoviePages = (movie) => {
-    movies.filter((mov) => movie === mov.title).map((favouriteMovie) => setMoviePage(favouriteMovie));
+    movies.filter((mov) => movie === mov.Title).map((favouriteMovie) => setMoviePage(favouriteMovie));
 };
 const isFavourite = (movie) => {
     if (!localStorage.getItem("favourites")) {
@@ -128,6 +74,22 @@ const generatefavouriteDropDown = () => {
 const getCurrentMovie = () => {
     const currentMovie = localStorage.getItem("movie");
     if (currentMovie)
-        return JSON.parse(currentMovie).title;
+        return JSON.parse(currentMovie).Title;
+};
+const showLoginForm = () => {
+    const elLoginModal = document.querySelector(".modal");
+    if (elLoginModal)
+        elLoginModal.style.display = "block";
+};
+const closeLoginForm = () => {
+    const elLoginModal = document.querySelector(".modal");
+    if (elLoginModal)
+        elLoginModal.style.display = "none";
+};
+const isLoggedIn = () => {
+    const loginButton = document.querySelector(".loginButton");
+    const loggedIn = localStorage.getItem("loggedIn");
+    if (loginButton && loggedIn)
+        loginButton.textContent = "Logged in: " + loggedIn;
 };
 //# sourceMappingURL=shared.js.map

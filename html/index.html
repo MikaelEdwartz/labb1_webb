@@ -24,7 +24,7 @@
         </div>
          </div>
         <button class="headerButton" onclick="movieRoulette()">Movie Roulette</button>
-        <button class="headerButton">Log in</button>
+        <button class="loginButton" onclick="showLoginForm()">Log in</button>
 
     </nav>
     <nav class="mobileHeader">
@@ -33,23 +33,33 @@
             <a href="javascript:void(0)" class="closeButton" onclick="closeSidebar()">x</a>
             <a href="#"  id="toggleFavourite" onclick="toggleFavourites()">Show favourites</a>
             <a href="#" onclick="movieRoulette()">Movie Roulette</a>
-            <a href="#">Log in</a>
-
+            <a href="#" onclick="showLoginForm()">Log in</a>
         </nav>
     </nav>
 </header>
 
-<form class="loginModal">
-
-</form>
+<div id="loginModal" class="modal">
+    <form id="loginForm" class="modal-content" method="post">
+        <div class="containerHeader">
+            <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+        <div class="container">
+            <label for="userName"><b>Username</b></label>
+            <input id="userName" type="text" placeholder="Enter Username" name="userName" required >
+            <label for="password"><b>Password</b></label>
+            <input id="password" type="password" placeholder="Enter Password" name="password" required>
+            <button class="headerButton" type="submit">Login</button>
+        </div>
+    </form>
+</div>
 
 <main id="main">
     <section id="content">
-
     </section>
     <section id="demo"></section>
 
 </main>
+
 <script src="../js/shared.js"></script>
 <script src="../js/main.js">
 

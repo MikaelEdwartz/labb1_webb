@@ -4,49 +4,47 @@ const content = document.querySelector(".movieInfo");
 const generateMoviePage = () => {
     const localMovie = localStorage.getItem("movie")
     if(localMovie) {
-        const selectedMovie: movies = JSON.parse(localMovie);
-    updateFavourites(selectedMovie.title)
+        const selectedMovie: movie = JSON.parse(localMovie);
+    updateFavourites(selectedMovie.Title)
+    isLoggedIn()
 
         if (content)
             content.innerHTML =
                 `<section class='movie_movie'>
-                <section class="moviePoster_movie">
+                 <section class="moviePoster_movie">
                     <figure>
-                        <img class='moviePoster_movie' src=${selectedMovie.posterUrl} alt='Poster Of movie'>
+                        <img class='moviePoster_movie' src=${selectedMovie.Poster} alt='Poster Of movie'>
                     </figure>
-
-                </section>
-                <section>
+                 </section>
+                 <section>
                     <article class='movieInfo_movie'>
                         <section>
-                        <p class='InfoContainers'> Title: </p>
-                        <p class='InfoContainer'>${selectedMovie.title}</p>
-                        
+                            <p class='InfoContainers'> Title: </p>
+                            <p class='InfoContainer'>${selectedMovie.Title}</p>
                         </section>
                         <section>
-                        <p class='InfoContainer'> Writers:</p>
-                        <p class='InfoContainer'> ${selectedMovie.writer}</p>
-
-</section>
-<section>                        <p class='InfoContainer'> Genre:</p>
-                        <p class='InfoContainer'> ${selectedMovie.genre}</p>
-</section>
-                <section>
-                        <p class='InfoContainer'> IMDB rating:</p>
-                        <p class='InfoContainer'> ${selectedMovie.rating}</p>
-                
-</section>
-                <section><p class='InfoContainer'> Released:</p>
-                        <p class='InfoContainer'> ${selectedMovie.released}</p></section>
-                       
+                            <p class='InfoContainer'> Writers:</p>
+                            <p class='InfoContainer'> ${selectedMovie.Writer}</p>
+                        </section>
+                        <section> 
+                            <p class='InfoContainer'> Genre:</p>
+                            <p class='InfoContainer'> ${selectedMovie.Genre}</p>
+                        </section>
+                        <section>
+                            <p class='InfoContainer'> IMDB rating:</p>
+                            <p class='InfoContainer'> ${selectedMovie.imdbRating}</p>
+                        </section>
+                        <section>
+                            <p class='InfoContainer'> Released:</p>
+                            <p class='InfoContainer'> ${selectedMovie.Released}</p></section>
+                        </section>
                     </article>
-                </section>
-                <section class='moviePlot_movie'>
-                    <article id="plotArticle">
-                        <p id='plot'>${selectedMovie.plot}</p>
-                    </article>
-                </section>
-            </section>`
+                    <section class='moviePlot_movie'>
+                        <article id="plotArticle">
+                            <p id='plot'>${selectedMovie.Plot}</p>
+                        </article>
+                    </section>
+                    </section>`
 
     }
 }

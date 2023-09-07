@@ -20,7 +20,7 @@
             </figure>
             </a>
         <div class="dropdown">
-            <button class="headerButton">Log in</button>
+            <button class="loginButton" onclick="showLoginForm()">Log in</button>
         </div>
     </nav>
 </header>
@@ -34,6 +34,23 @@
     <article class="movieInfo">
     </article>
 </section>
+
+<div id="loginModal" class="modal">
+
+    <form class="modal-content animate" action="" method="post">
+        <div class="containerHeader">
+            <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+        <div class="container">
+            <label for="userName"><b>Username</b></label>
+            <input id="userName" type="text" placeholder="Enter Username" name="userName" required >
+            <label for="password"><b>Password</b></label>
+            <input id="password" type="password" placeholder="Enter Password" name="password" required>
+            <button class="headerButton" type="submit">Login</button>
+        </div>
+    </form>
+</div>
+
 <script src="../js/shared.js"></script>
 <script src="../js/movie.js"></script>
 </body>
