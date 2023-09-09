@@ -38,11 +38,13 @@ interface movie {
     "Website"?: string;
     "Response"?: string;
 }
+
 const pathToLikedHeart: string = "../res/img/filledHeart.png";
 const pathToUnlikedHeart: string = "../res/img/hollowHeart.png";
+const movies: movie[] = []
 
 const generateMovies = () => {
-    const moviesToFetch = ["tt0120737", "tt0111161", "tt0068646", "tt0468569", "tt0050083", "tt0110912", "tt0109830", "tt0102926", "tt0816692", "tt0120689", "tt0088763", "tt0245429", "tt0253474", "tt0110357"]
+    const moviesToFetch = ["tt0120737", "tt0111161", "tt0068646", "tt0468569", "tt0050083", "tt0110912", "tt0910970", "tt0102926", "tt0816692", "tt0477348", "tt0088763", "tt0103639", "tt0253474", "tt0110357"]
     Promise.all(
         moviesToFetch.map((movieID) => fetch(`https://www.omdbapi.com/?i=${movieID} &apikey=f485cb5`)
             .then(response => {
@@ -54,11 +56,8 @@ const generateMovies = () => {
                     movies.push(mov);
             }))
     ).then(() => generateOnStartUp())
-
 }
 
-
-const movies: movie[] = []
 const setFavourite = (movieTitle: string) => {
     const isNull = !localStorage.getItem("favourites");
     let favourites: string[] = [];
@@ -87,18 +86,23 @@ const setFavouriteButtonText = (movieTitle: string) => {
 
 const updateFavourites = (movieTitle: string) => {
     setFavouriteButtonText(movieTitle);
-    generatefavouriteDropDown()
+    generateFavouriteDropDown()
 }
-const setMoviePage = (movie: movie) => {
+const openSelectedMovie = (movie: movie) => {
     localStorage.setItem("movie", JSON.stringify(movie))
     const newWindow = window.open("../html/Movie.html", "_self")
 }
-const setMoviePages = (movie: string) => {
-    movies.filter((mov) => movie === mov.Title).map((favouriteMovie) => setMoviePage(favouriteMovie))
+const getSelectedMovie = (movie: string) => {
+    let storageMovies = localStorage.getItem("movies");
+    if (storageMovies) {
+        const movies: movie[] = JSON.parse(storageMovies);
+        movies
+            .filter((mov) => mov.Title == movie)
+            .forEach((selectedMovie) => openSelectedMovie(selectedMovie))
+    }
 
 }
 const isFavourite = (movie: string) => {
-
     if (!localStorage.getItem("favourites")) {
         return false
     } else {
@@ -106,7 +110,7 @@ const isFavourite = (movie: string) => {
         return favourites.indexOf(movie) !== -1
     }
 }
-const generatefavouriteDropDown = () => {
+const generateFavouriteDropDown = () => {
     const favourite = localStorage.getItem("favourites");
     if (favourite) {
         const favourites: string[] = JSON.parse(favourite)
@@ -114,7 +118,7 @@ const generatefavouriteDropDown = () => {
         if (elDropDown) {
             let listHtml: string = "";
             favourites.forEach((favouriteMovie) => {
-                listHtml += "<a href='#' onclick='setMoviePages(" + JSON.stringify(favouriteMovie) + ")'>" + favouriteMovie + "</a>"
+                listHtml += "<a href='#' onclick='getSelectedMovie(" + JSON.stringify(favouriteMovie) + ")'>" + favouriteMovie + "</a>"
             })
             elDropDown.innerHTML = listHtml
         }
@@ -126,20 +130,20 @@ const getCurrentMovie = () => {
         return JSON.parse(currentMovie).Title;
 }
 
-const showLoginForm = () =>{
+const showLoginForm = () => {
     const elLoginModal = document.querySelector(".modal") as HTMLDivElement;
-    if(elLoginModal)
+    if (elLoginModal)
         elLoginModal.style.display = "block";
 }
-const closeLoginForm = () =>{
+const closeLoginForm = () => {
     const elLoginModal = document.querySelector(".modal") as HTMLDivElement;
-    if(elLoginModal)
+    if (elLoginModal)
         elLoginModal.style.display = "none";
 }
 
-const isLoggedIn = () =>{
+const isLoggedIn = () => {
     const loginButton = document.querySelector(".loginButton") as HTMLButtonElement;
     const loggedIn = localStorage.getItem("loggedIn");
-    if(loginButton && loggedIn)
+    if (loginButton && loggedIn)
         loginButton.textContent = "Logged in: " + loggedIn;
 }

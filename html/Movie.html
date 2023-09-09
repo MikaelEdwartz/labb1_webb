@@ -3,49 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>$Title$</title>
-    <link rel="stylesheet" href="../css/mainStyle.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/mainStyle.css" rel="stylesheet">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 </head>
 <body class="iMovie">
 <header>
     <nav class="movieNav">
         <div class="dropdown">
             <button class="headerButton" onclick="generatefavouriteDropDown()">Favourites</button>
-            <div id="favourite-dropdown-content">
-            </div>
+            <div id="favourite-dropdown-content"></div>
         </div>
-            <a href="index.html">
+        <a href="index.html">
             <figure>
-                <img class="mainIcon_movie" src="../res/img/mainIcon.png" alt="MMDB icon">
+                <img alt="MMDB icon" class="mainIcon_movie" src="../res/img/mainIcon.png">
             </figure>
-            </a>
+        </a>
         <div class="dropdown">
             <button class="loginButton" onclick="showLoginForm()">Log in</button>
         </div>
     </nav>
 </header>
 <section class="trailerSection">
-    <video id="trailer" width="390" height="240" controls>
-     <source src="../res/vid/lotr.mp4" type="video/mp4">
+    <video controls height="240" id="trailer" width="390">
+        <source src="../res/vid/lotr.mp4" type="video/mp4">
     </video>
-    <button id="favButton" onclick='setFavourite(getCurrentMovie())'> </button>
+    <button id="favButton" onclick='setFavourite(getCurrentMovie())'></button>
 </section>
 <section>
     <article class="movieInfo">
     </article>
 </section>
 
-<div id="loginModal" class="modal">
-
-    <form class="modal-content animate" action="" method="post">
+<div class="modal" id="loginModal">
+    <form class="modal-content animate" method="post">
         <div class="containerHeader">
-            <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <span class="close" onclick="document.getElementById('loginModal').style.display='none'"
+                  title="Close Modal">&times;</span>
         </div>
         <div class="container">
             <label for="userName"><b>Username</b></label>
-            <input id="userName" type="text" placeholder="Enter Username" name="userName" required >
+            <input id="userName" name="userName" placeholder="Enter Username" required type="text">
             <label for="password"><b>Password</b></label>
-            <input id="password" type="password" placeholder="Enter Password" name="password" required>
+            <input id="password" name="password" placeholder="Enter Password" required type="password">
             <button class="headerButton" type="submit">Login</button>
         </div>
     </form>

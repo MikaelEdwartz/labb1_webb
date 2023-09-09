@@ -1,12 +1,10 @@
+let showingFavourites: boolean;
+const mainContent = document.querySelector("#content");
+const genres: Set<string> = new Set<string>();
+
 const generateGenres = () => {
     movies.map((movie) => movie.Genre.split(", ").map((genre) => genres.add(genre)));
 }
-
-let showingFavourites: boolean;
-
-const mainContent = document.querySelector("#content");
-
-const genres: Set<string> = new Set<string>();
 
 function showMovies() {
     movies.map((movie) => generateMovieSections(movie))
@@ -16,23 +14,24 @@ const generateOnStartUp = () => {
     showMovies();
     generateGenres();
     generateGenreDropDown();
-    generatefavouriteDropDown()
+    generateFavouriteDropDown()
     const elLoginForm = document.querySelector("#loginForm") as HTMLFormElement;
-    if(elLoginForm)
-        elLoginForm.addEventListener('submit', (event) =>{
-            if(!elLoginForm.checkValidity())
+    if (elLoginForm)
+        elLoginForm.addEventListener('submit', (event) => {
+            if (!elLoginForm.checkValidity())
                 return;
 
             event.preventDefault();
             const userName = document.getElementById("userName") as HTMLInputElement;
             const loginButton = document.querySelector(".loginButton") as HTMLButtonElement;
-            if(userName && loginButton)
+            if (userName && loginButton)
                 loginButton.textContent = "Logged in: " + userName.value;
             localStorage.setItem("loggedIn", userName.value);
             closeLoginForm()
 
         });
     isLoggedIn();
+    localStorage.setItem("movies", JSON.stringify(movies));
 }
 
 const generateGenreDropDown = () => {
@@ -61,7 +60,6 @@ const closeSidebar = () => {
     const elSidePanel = document.querySelector("#sidePanel") as HTMLDivElement;
     elSidePanel.style.width = "0px";
 }
-
 
 const toggleFavourites = () => {
     if (mainContent) {
@@ -93,13 +91,13 @@ const generateMovieSections = (movie: movie) => {
     if (mainContent)
         mainContent.innerHTML +=
             `<section class='movieContainer' > 
-                    <figure onclick='setMoviePage(${JSON.stringify(movie)})'></a>
+                    <figure onclick='openSelectedMovie(${JSON.stringify(movie)})'></a>
                         <img class='poster' src=${movie.Poster} alt="movieposter">
                     </figure>
                     <figure class='favoriteButton' onclick='setFavourite(\"${movie.Title}\")'>
                         <img id='favoriteButton_${movie.Title}' src=${getLikeButtonState(movie.Title)} alt=´movieposter´ >
                     </figure>
-                    <article id='movieInfoContainer' onclick='setMoviePage(${JSON.stringify(movie)})'>
+                    <article id='movieInfoContainer' onclick='openSelectedMovie(${JSON.stringify(movie)})'>
                         <p id='title'>${movie.Title} </p>
                         <p id='description'>${movie.Plot}</p>
                         <p id='movieInfoP'> <bold>Writers: </bold> ${movie.Writer}</p>
@@ -111,7 +109,7 @@ const generateMovieSections = (movie: movie) => {
 
 const movieRoulette = () => {
     const randomMovieIndex = Math.floor(Math.random() * movies.length)
-    setMoviePage(movies[randomMovieIndex])
+    openSelectedMovie(movies[randomMovieIndex])
 }
 
 document.addEventListener("DOMContentLoaded", generateMovies);

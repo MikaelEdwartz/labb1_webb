@@ -1,8 +1,9 @@
 "use strict";
 const pathToLikedHeart = "../res/img/filledHeart.png";
 const pathToUnlikedHeart = "../res/img/hollowHeart.png";
+const movies = [];
 const generateMovies = () => {
-    const moviesToFetch = ["tt0120737", "tt0111161", "tt0068646", "tt0468569", "tt0050083", "tt0110912", "tt0109830", "tt0102926", "tt0816692", "tt0120689", "tt0088763", "tt0245429", "tt0253474", "tt0110357"];
+    const moviesToFetch = ["tt0120737", "tt0111161", "tt0068646", "tt0468569", "tt0050083", "tt0110912", "tt0910970", "tt0102926", "tt0816692", "tt0477348", "tt0088763", "tt0103639", "tt0253474", "tt0110357"];
     Promise.all(moviesToFetch.map((movieID) => fetch(`https://www.omdbapi.com/?i=${movieID} &apikey=f485cb5`)
         .then(response => {
         if (response.ok) {
@@ -13,7 +14,6 @@ const generateMovies = () => {
             movies.push(mov);
     }))).then(() => generateOnStartUp());
 };
-const movies = [];
 const setFavourite = (movieTitle) => {
     const isNull = !localStorage.getItem("favourites");
     let favourites = [];
@@ -39,14 +39,20 @@ const setFavouriteButtonText = (movieTitle) => {
 };
 const updateFavourites = (movieTitle) => {
     setFavouriteButtonText(movieTitle);
-    generatefavouriteDropDown();
+    generateFavouriteDropDown();
 };
-const setMoviePage = (movie) => {
+const openSelectedMovie = (movie) => {
     localStorage.setItem("movie", JSON.stringify(movie));
     const newWindow = window.open("../html/Movie.html", "_self");
 };
-const setMoviePages = (movie) => {
-    movies.filter((mov) => movie === mov.Title).map((favouriteMovie) => setMoviePage(favouriteMovie));
+const getSelectedMovie = (movie) => {
+    let storageMovies = localStorage.getItem("movies");
+    if (storageMovies) {
+        const movies = JSON.parse(storageMovies);
+        movies
+            .filter((mov) => mov.Title == movie)
+            .forEach((selectedMovie) => openSelectedMovie(selectedMovie));
+    }
 };
 const isFavourite = (movie) => {
     if (!localStorage.getItem("favourites")) {
@@ -57,7 +63,7 @@ const isFavourite = (movie) => {
         return favourites.indexOf(movie) !== -1;
     }
 };
-const generatefavouriteDropDown = () => {
+const generateFavouriteDropDown = () => {
     const favourite = localStorage.getItem("favourites");
     if (favourite) {
         const favourites = JSON.parse(favourite);
@@ -65,7 +71,7 @@ const generatefavouriteDropDown = () => {
         if (elDropDown) {
             let listHtml = "";
             favourites.forEach((favouriteMovie) => {
-                listHtml += "<a href='#' onclick='setMoviePages(" + JSON.stringify(favouriteMovie) + ")'>" + favouriteMovie + "</a>";
+                listHtml += "<a href='#' onclick='getSelectedMovie(" + JSON.stringify(favouriteMovie) + ")'>" + favouriteMovie + "</a>";
             });
             elDropDown.innerHTML = listHtml;
         }

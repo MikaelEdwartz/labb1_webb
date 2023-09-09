@@ -1,12 +1,10 @@
-
-
 const content = document.querySelector(".movieInfo");
 const generateMoviePage = () => {
     const localMovie = localStorage.getItem("movie")
-    if(localMovie) {
+    if (localMovie) {
         const selectedMovie: movie = JSON.parse(localMovie);
-    updateFavourites(selectedMovie.Title)
-    isLoggedIn()
+        updateFavourites(selectedMovie.Title)
+        isLoggedIn()
 
         if (content)
             content.innerHTML =
@@ -36,7 +34,8 @@ const generateMoviePage = () => {
                         </section>
                         <section>
                             <p class='InfoContainer'> Released:</p>
-                            <p class='InfoContainer'> ${selectedMovie.Released}</p></section>
+                            <p class='InfoContainer'> ${selectedMovie.Released}</p>
+                        </section>
                         </section>
                     </article>
                     <section class='moviePlot_movie'>

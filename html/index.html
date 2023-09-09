@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>MMDB</title>
-    <link rel="stylesheet" href="../css/mainStyle.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/mainStyle.css" rel="stylesheet">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 </head>
 <body>
 <header id="header">
-    <img id="mainIcon" src="../res/img/mainIcon.png" alt="icon of MMDB">
+    <img alt="icon of MMDB" id="mainIcon" src="../res/img/mainIcon.png">
     <nav class="desktopHeader">
         <button class="headerButton" onclick="window.scrollTo(0,0)">Home</button>
 
@@ -20,42 +20,42 @@
         </div>
         <div class="dropdown">
             <button class="headerButton">Show Favourites</button>
-        <div id="favourite-dropdown-content">
+            <div id="favourite-dropdown-content">
+            </div>
         </div>
-         </div>
         <button class="headerButton" onclick="movieRoulette()">Movie Roulette</button>
         <button class="loginButton" onclick="showLoginForm()">Log in</button>
 
     </nav>
     <nav class="mobileHeader">
-        <button id="sidebarButton" onclick="handleSidebar()">☰ </button>
+        <button id="sidebarButton" onclick="handleSidebar()">☰</button>
         <nav id="sidePanel">
-            <a href="javascript:void(0)" class="closeButton" onclick="closeSidebar()">x</a>
-            <a href="#"  id="toggleFavourite" onclick="toggleFavourites()">Show favourites</a>
+            <a class="closeButton" href="javascript:void(0)" onclick="closeSidebar()">x</a>
+            <a href="#" id="toggleFavourite" onclick="toggleFavourites()">Show favourites</a>
             <a href="#" onclick="movieRoulette()">Movie Roulette</a>
             <a href="#" onclick="showLoginForm()">Log in</a>
         </nav>
     </nav>
 </header>
 
-<div id="loginModal" class="modal">
-    <form id="loginForm" class="modal-content" method="post">
+<div class="modal" id="loginModal">
+    <form class="modal-content" id="loginForm" method="post">
         <div class="containerHeader">
-            <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <span class="close" onclick="document.getElementById('loginModal').style.display='none'"
+                  title="Close Modal">&times;</span>
         </div>
         <div class="container">
             <label for="userName"><b>Username</b></label>
-            <input id="userName" type="text" placeholder="Enter Username" name="userName" required >
+            <input id="userName" name="userName" placeholder="Enter Username" required type="text">
             <label for="password"><b>Password</b></label>
-            <input id="password" type="password" placeholder="Enter Password" name="password" required>
+            <input id="password" name="password" placeholder="Enter Password" required type="password">
             <button class="headerButton" type="submit">Login</button>
         </div>
     </form>
 </div>
 
 <main id="main">
-    <section id="content">
-    </section>
+    <section id="content"></section>
     <section id="demo"></section>
 
 </main>

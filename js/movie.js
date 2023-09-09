@@ -34,7 +34,8 @@ const generateMoviePage = () => {
                         </section>
                         <section>
                             <p class='InfoContainer'> Released:</p>
-                            <p class='InfoContainer'> ${selectedMovie.Released}</p></section>
+                            <p class='InfoContainer'> ${selectedMovie.Released}</p>
+                        </section>
                         </section>
                     </article>
                     <section class='moviePlot_movie'>
