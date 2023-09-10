@@ -43,14 +43,15 @@ const generateGenreDropDown = () => {
         })
         elDropDown.innerHTML = listHtml
     }
-
 }
+
 const showOnlyFromGenre = (genre: string) => {
     if (mainContent) {
         mainContent.innerHTML = "";
         genre === "Show All" ? showMovies() : movies.filter((movie) => movie.Genre.match(genre)).forEach((movie) => generateMovieSections(movie))
     }
 }
+
 const handleSidebar = () => {
     const elSidePanel = document.querySelector("#sidePanel") as HTMLDivElement;
     elSidePanel.style.width = "250px";
@@ -68,6 +69,7 @@ const toggleFavourites = () => {
         showingFavourites ? showFavourites() : hideFavourites();
     }
 }
+
 const showFavourites = () => {
     const elToggleFavourite = document.querySelector("#toggleFavourite");
     if (elToggleFavourite) {
@@ -77,6 +79,7 @@ const showFavourites = () => {
         closeSidebar()
     }
 }
+
 const hideFavourites = () => {
     const elToggleFavourite = document.querySelector("#toggleFavourite");
     if (elToggleFavourite) {
@@ -112,9 +115,8 @@ const movieRoulette = () => {
     openSelectedMovie(movies[randomMovieIndex])
 }
 
-document.addEventListener("DOMContentLoaded", generateMovies);
-
 const getLikeButtonState = (movie: string) => {
     return isFavourite(movie) ? pathToLikedHeart : pathToUnlikedHeart;
 }
 
+document.addEventListener("DOMContentLoaded", generateMovies);

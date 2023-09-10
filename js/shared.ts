@@ -61,7 +61,6 @@ const generateMovies = () => {
 const setFavourite = (movieTitle: string) => {
     const isNull = !localStorage.getItem("favourites");
     let favourites: string[] = [];
-    console.log(movieTitle)
     if (isNull) {
         favourites = []
         favourites.push(movieTitle)

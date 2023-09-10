@@ -33,7 +33,7 @@ a {
     justify-items: end;
     grid-template-columns: 2fr;
     grid-template-rows: 1fr 3fr;
-    background-image: url(moviePosterTablet.jpg);
+    background-image: url(../res/img/moviePosterTablet.jpg);
     background-size: contain;
     height: auto;
 }
